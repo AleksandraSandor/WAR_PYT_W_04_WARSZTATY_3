@@ -7,7 +7,7 @@
             <th>Nr Sali</th>
             <th>Nazwa</th>
             <th>Ilość osób</th>
-            <th>Czy jest projektor</th>
+            <th>Czy jest projektor?</th>
             <th>Edytuj</th>
             <th>Usuń</th>
         </thead>
@@ -15,11 +15,11 @@
             {% for room in rooms %}
             <tr>
                 <td>{{room.pk}}</td>
-                <td><a href="#">{{room.name}}</a></td>
+                <td><a href="{% url 'single_room' id=room.pk %}">{{room.name}}</a></td>
                 <td>{{room.capacity}}</td>
                 <td>{{ room.is_projector|yesno:"Tak,Nie" }}</td>
-                <td><a href="room/modify/{pk}">Edytuj</a></td>
-                <td><a href="room/modify/{pk}">Usuń</a></td>
+                <td><a href="{% url 'modify_room' id=room.pk %}">Edytuj</a></td>
+                <td><a href="{% url 'delete_room' id=room.pk %}">Usuń</a></td>
             </tr>
             {% endfor %}
         </tbody>

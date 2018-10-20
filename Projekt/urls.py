@@ -17,8 +17,6 @@ from django.contrib import admin
 from django.urls import path
 from system_rezerwacyjny import views
 
-from system_rezerwacyjny import views
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('room/new', views.new_room, name="new_room"),
