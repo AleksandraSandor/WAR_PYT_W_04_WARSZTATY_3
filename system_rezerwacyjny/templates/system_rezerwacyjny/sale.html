@@ -2,4 +2,28 @@
 
 {% block content %}
     <h1>Lista Sal</h1>
+    <table border="3" cellspacing="5" cellpadding="8" style="border-collapse: collapse">
+        <thead>
+            <th>Nr Sali</th>
+            <th>Nazwa</th>
+            <th>Ilość osób</th>
+            <th>Czy jest projektor</th>
+            <th>Edytuj</th>
+            <th>Usuń</th>
+        </thead>
+        <tbody>
+            {% for room in rooms %}
+            <tr>
+                <td>{{room.pk}}</td>
+                <td><a href="#">{{room.name}}</a></td>
+                <td>{{room.capacity}}</td>
+                <td>{{ room.is_projector|yesno:"Tak,Nie" }}</td>
+                <td><a href="room/modify/{pk}">Edytuj</a></td>
+                <td><a href="room/modify/{pk}">Usuń</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
 {% endblock%}
