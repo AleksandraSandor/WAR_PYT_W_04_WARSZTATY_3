@@ -26,3 +26,6 @@ def all_rooms(request):
 
 
 # Create your views here.
+
+def test(request):
+    return render(request, 'system_rezerwacyjny/sale.html', {})
