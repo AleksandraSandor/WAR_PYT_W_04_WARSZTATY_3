@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'Projekt.wsgi.application'
 DATABASES = {
     'default': {
         'HOST': '127.0.0.1',
-        'NAME': 'postgres',
+        'NAME': 'sale_db',
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'USER': 'aleksandrasandor',
         'PASSWORD': '1987lukas',
