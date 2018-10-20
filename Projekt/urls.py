@@ -17,8 +17,11 @@ from django.contrib import admin
 from django.urls import path
 from system_rezerwacyjny import views
 
+from system_rezerwacyjny import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('test/', views.test),
     path('room/new', views.new_room , "new_room" ),
     path('room/modify/<int:id>', views.modify_room , "modify_room"),
     path('room/delete/<int:id>', views.delete_room , "delete_room"),

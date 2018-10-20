@@ -19,3 +19,6 @@ def single_room(request):
 def all_rooms(request):
     pass
 
+def test(request):
+    return render(request, 'system_rezerwacyjny/sale.html', {})
+
