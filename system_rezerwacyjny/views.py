@@ -3,8 +3,11 @@ from django.http import HttpResponse, HttpRequest
 from system_rezerwacyjny import *
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, get_object_or_404,redirect
-from system_rezerwacyjny.forms import PostForm
-from system_rezerwacyjny.models import Sala
+from system_rezerwacyjny.forms import PostForm, ReservationForm
+from system_rezerwacyjny.models import Sala, Reservation
+import calendar
+from datetime import datetime
+from django.utils.safestring import mark_safe
 
 
 def new_room(request):
@@ -47,3 +50,22 @@ def all_rooms(request):
     rooms = Sala.objects.all().order_by('id')
     return render(request, 'system_rezerwacyjny/sale.html', {'rooms':rooms})
 
+
+def reservation(request, id):
+    room = Sala.objects.get(pk=id)
+    reserved = Reservation.objects.filter(pk=id, date__isnull=False )
+    for r in reserved:
+        print(str(r.date).split("-")[-1])
+
+    hc = calendar.HTMLCalendar(calendar.MONDAY)
+    cal = hc.formatmonth(datetime.now().year, datetime.now().month)
+    if request.method == "POST":
+        form = ReservationForm(request.POST)
+        if form.is_valid():
+            room = form.save(commit=False)
+            room.save()
+            return redirect('all_rooms')
+    else:
+        form = ReservationForm(initial={'id_sali': room.name})
+        return render(request, 'system_rezerwacyjny/reservation.html',
+                      {'room': room, "cal": mark_safe(cal), "form": form})

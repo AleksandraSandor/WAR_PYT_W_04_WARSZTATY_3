@@ -12,7 +12,7 @@ class Sala(models.Model):
 
 class Reservation(models.Model):
     date = models.DateField(null=True)
-    id_sali = models.ForeignKey(Sala, on_delete=models.CASCADE)
+    id_sali = models.ForeignKey(Sala, on_delete=models.CASCADE, related_name="reservation")
     note = models.TextField()
 
     def __str__(self):

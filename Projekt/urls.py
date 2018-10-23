@@ -24,4 +24,5 @@ urlpatterns = [
     path('room/delete/<int:id>', views.delete_room, name="delete_room"),
     path('room/<int:id>', views.single_room, name="single_room"),
     path('room/all/', views.all_rooms, name="all_rooms"),
+    path('reservation/<int:id>/', views.reservation, name="reservation"),
 ]

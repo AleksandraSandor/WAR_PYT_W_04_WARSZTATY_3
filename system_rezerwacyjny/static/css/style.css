@@ -1,0 +1,21 @@
+table.month {
+    width: 1000px;
+    height: 1000px;
+}
+
+table.month tr {
+    text-align: center;
+}
+
+table.month td {
+    font-size: 25px;
+    cursor: pointer;
+}
+
+table.month td:hover {
+    background-color: cadetblue;
+}
+
+.reserved {
+    background-color:red;
+}
