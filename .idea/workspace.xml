@@ -2,11 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3010ca54-a164-45a9-bd8e-20da6eb9509d" name="Default" comment="">
+<<<<<<< HEAD
+=======
       <change afterPath="$PROJECT_DIR$/system_rezerwacyjny/templates/system_rezerwacyjny/sale.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/WAR_PYT_W_04_WARSZTATY_3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/WAR_PYT_W_04_WARSZTATY_3.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Projekt/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Projekt/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/system_rezerwacyjny/templates/system_rezerwacyjny/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/system_rezerwacyjny/templates/system_rezerwacyjny/base.html" afterDir="false" />
+>>>>>>> 836c7012d4de8266212651c3cfb02b602a8b830a
       <change beforePath="$PROJECT_DIR$/system_rezerwacyjny/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/system_rezerwacyjny/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -30,7 +33,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Projekt/urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="240">
@@ -53,10 +56,11 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/system_rezerwacyjny/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="315">
+              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -79,6 +83,7 @@
         <option value="$PROJECT_DIR$/system_rezerwacyjny/templates/system_rezerwacyjny/base.html" />
         <option value="$PROJECT_DIR$/Projekt/settings.py" />
         <option value="$PROJECT_DIR$/Projekt/urls.py" />
+        <option value="$PROJECT_DIR$/system_rezerwacyjny/views.py" />
       </list>
     </option>
   </component>
@@ -189,9 +194,14 @@
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.32923076" />
+<<<<<<< HEAD
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.32923076" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25274727" />
+=======
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.32756132" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2560423" />
+>>>>>>> 836c7012d4de8266212651c3cfb02b602a8b830a
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="SciView" order="3" />
@@ -269,19 +279,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/system_rezerwacyjny/views.py">
+    <entry file="file://$PROJECT_DIR$/Projekt/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="405">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
           <folding>
-            <element signature="e#0#35#0" expanded="true" />
+            <element signature="e#631#663#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Projekt/urls.py">
+    <entry file="file://$PROJECT_DIR$/system_rezerwacyjny/views.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="315">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+=======
         <state relative-caret-position="240">
           <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+>>>>>>> 836c7012d4de8266212651c3cfb02b602a8b830a
         </state>
       </provider>
     </entry>
