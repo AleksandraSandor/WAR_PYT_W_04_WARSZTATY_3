@@ -17,5 +17,3 @@ class Reservation(models.Model):
 
     def __str__(self):
         return "{} {} {}".format(self.date, self.id_sali, self.note)
-
-
