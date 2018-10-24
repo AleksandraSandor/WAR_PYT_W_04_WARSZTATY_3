@@ -1,5 +1,5 @@
 
-from django.forms import ModelForm, Textarea, TextInput
+from django.forms import ModelForm, HiddenInput
 from .models import Sala, Reservation
 
 
@@ -14,6 +14,6 @@ class ReservationForm(ModelForm):
         model = Reservation
         fields = ('date', 'id_sali', 'note')
         widgets = {
-            'id_sali': TextInput(attrs={'readonly': 'readonly'}),
+            'id_sali': HiddenInput()
         }
 
