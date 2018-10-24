@@ -1,6 +1,14 @@
 {% extends 'system_rezerwacyjny/base.html' %}
 {% block content %}
-    <h1>Lista Sal</h1>
+    <h1>Lista Sal</h1><br><br>
+
+    <form action='' method='POST'>{% csrf_token %}
+        <label>
+            <input type="date" name="date" placeholder="rrrr-mm-dd"/><br/>
+        </label><br>
+        <input type='submit' name='sendBtn' value='Wyszukaj rezerwację'>
+    </form><br>
+
     <table border="3" cellspacing="5" cellpadding="8" style="border-collapse: collapse">
         <thead>
             <th>Nr Sali</th>
@@ -9,6 +17,13 @@
             <th>Czy jest projektor?</th>
             <th>Edytuj</th>
             <th>Usuń</th>
+                {% if not form %}
+            <th>Rezerwacja</th>
+                {%  endif %}
+                {% if form %}
+                    {% load poll_extras %}
+            <th>Status sali dla daty {{room.id|date:date}}</th>
+                {%  endif %}
         </thead>
         <tbody>
             {% for room in rooms %}
@@ -19,7 +34,13 @@
                 <td>{{ room.is_projector|yesno:"Tak,Nie" }}</td>
                 <td><a href="{% url 'modify_room' id=room.pk %}">Edytuj</a></td>
                 <td><a href="{% url 'delete_room' id=room.pk %}">Usuń</a></td>
+                {% if not form %}
                 <td><a href="{% url 'reservation' id=room.pk %}">Zarezerwuj</a></td>
+                {% endif %}
+                    {% if form %}
+                        {% load poll_extras %}
+                <td>{{room.id|reserve:date}}</td>
+                    {%  endif %}
             </tr>
             {% endfor %}
         </tbody>

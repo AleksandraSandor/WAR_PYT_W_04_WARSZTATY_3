@@ -47,8 +47,15 @@ def single_room(request,id):
     pass
 
 def all_rooms(request):
-    rooms = Sala.objects.all().order_by('id')
-    return render(request, 'system_rezerwacyjny/sale.html', {'rooms':rooms})
+    if request.method == "POST":
+        rooms = Sala.objects.all().order_by('id')
+        date = request.POST.get('date')
+        if date == '':
+            return render(request, 'system_rezerwacyjny/sale.html', {'rooms':rooms, 'form':False})
+        return render(request, 'system_rezerwacyjny/sale.html', {'rooms': rooms, 'form': True, 'date': date })
+    else:
+        rooms = Sala.objects.all().order_by('id')
+        return render(request, 'system_rezerwacyjny/sale.html', {'rooms':rooms, 'form':False})
 
 
 def reservation(request, id):
@@ -69,3 +76,4 @@ def reservation(request, id):
         form = ReservationForm(initial={'id_sali': room.name})
         return render(request, 'system_rezerwacyjny/reservation.html',
                       {'room': room, "cal": mark_safe(cal), "form": form})
+
