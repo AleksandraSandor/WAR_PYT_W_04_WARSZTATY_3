@@ -1,12 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpRequest
-from system_rezerwacyjny import *
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, get_object_or_404,redirect
 from system_rezerwacyjny.forms import PostForm, ReservationForm
 from system_rezerwacyjny.models import Sala, Reservation
 from system_rezerwacyjny.utils import MyCalendar
 from datetime import datetime
+from calendar import HTMLCalendar
 from django.utils.safestring import mark_safe
 
 
@@ -60,8 +60,7 @@ def all_rooms(request):
 
 def reservation(request, id):
     room = Sala.objects.get(pk=id)
-    reserved = Reservation.objects.filter(pk=id, date__isnull=False )
-    hc = MyCalendar()
+    hc = MyCalendar(room.id)
     cal = hc.formatmonth(datetime.now().year, datetime.now().month)
     if request.method == "POST":
         form = ReservationForm(request.POST)
@@ -71,6 +70,7 @@ def reservation(request, id):
             return redirect('all_rooms')
     else:
         form = ReservationForm(initial={"id_sali": room.id})
+
         return render(request, 'system_rezerwacyjny/reservation.html',
                       {'room': room, "cal": mark_safe(cal), "form": form})
 

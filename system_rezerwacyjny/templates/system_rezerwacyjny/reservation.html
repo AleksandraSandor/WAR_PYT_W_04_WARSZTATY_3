@@ -3,8 +3,15 @@
     <h1>Zarezerwuj Salę {{ room.name }}</h1>
 
     {{cal}}
-     <form method="POST" class="post-form">{% csrf_token %}
+    <div id="overlay">
+     <div>
+               <form method="POST" class="post-form">{% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Save</button>
-    </form>
+            <button type="submit" class="save btn btn-default">Save</button>
+        </form>
+         <p>Kliknij tu aby <a href='' onclick='overlay()'>zamknąć okno</a> bez rezerwacji</p>
+
+     </div>
+</div>
+
 {% endblock %}
