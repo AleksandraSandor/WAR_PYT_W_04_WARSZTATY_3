@@ -1,7 +1,7 @@
 
 from django.forms import ModelForm, HiddenInput
 from .models import Sala, Reservation
-
+from django import forms
 
 class PostForm(ModelForm):
     class Meta:
@@ -16,4 +16,3 @@ class ReservationForm(ModelForm):
         widgets = {
             'id_sali': HiddenInput()
         }
-

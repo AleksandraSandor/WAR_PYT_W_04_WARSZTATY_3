@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpRequest
 from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from django.shortcuts import render, get_object_or_404,redirect
 from system_rezerwacyjny.forms import PostForm, ReservationForm
 from system_rezerwacyjny.models import Sala, Reservation
@@ -57,20 +58,18 @@ def all_rooms(request):
         rooms = Sala.objects.all().order_by('id')
         return render(request, 'system_rezerwacyjny/sale.html', {'rooms':rooms, 'form':False})
 
-
+@csrf_exempt
 def reservation(request, id):
     room = Sala.objects.get(pk=id)
     hc = MyCalendar(room.id)
     cal = hc.formatmonth(datetime.now().year, datetime.now().month)
     if request.method == "POST":
-        form = ReservationForm(request.POST)
-        if form.is_valid():
-            room = form.save(commit=False)
-            room.save()
-            return redirect('all_rooms')
+        d = request.POST.get("date")
+        day = str(d).split("-")[2]
+        n = request.POST.get(f"notes_{day}")
+        Reservation.objects.create(date=d, note=n, id_sali=room)
+        return HttpResponseRedirect(reverse('all_rooms'))
     else:
-        form = ReservationForm(initial={"id_sali": room.id})
-
         return render(request, 'system_rezerwacyjny/reservation.html',
-                      {'room': room, "cal": mark_safe(cal), "form": form})
+                      {'room': room, "cal": mark_safe(cal)})
 
