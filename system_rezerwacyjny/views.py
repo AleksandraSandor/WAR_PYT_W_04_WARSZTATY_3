@@ -101,7 +101,7 @@ def search(request):
             if date:
                 temp = []
                 for room in rooms:
-                    free_room = Reservation.objects.filter(date=date, id=room)
+                    free_room = Reservation.objects.filter(date=date, id_sali_id=room)
                     if len(free_room) == 0:
                         temp.append(room)
             else:
@@ -109,5 +109,4 @@ def search(request):
             return render(request, 'system_rezerwacyjny/search.html', {'rooms': temp, 'get': True})
     else:
         form = SearchForm()
-        msg_search = "Wyszukiwarka sali"
         return render(request, 'system_rezerwacyjny/search.html', {'get': False, 'form':form})

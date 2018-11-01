@@ -5,12 +5,13 @@
 
         <form method="POST" class="post-form">{% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Save</button>
+        <button type="submit" class="save btn btn-default">Wyszukaj</button>
         </form>
 
     {%  endif %}
 
     {% if get %}
+        {% if rooms %}
     <h1>Wyniki wyszukiwania</h1><br><br>
     <table border="3" cellspacing="5" cellpadding="8" style="border-collapse: collapse">
         <thead>
@@ -30,6 +31,9 @@
                 <td><a href="{% url 'reservation' id=room.pk %}">Zarezerwuj</a></td>
             </tr>
             {% endfor %}
+        {% else %}
+            <p>Brak wolnych sal dla podanych kryteriów wyszukiwania</p>
+        {% endif %}
         </tbody>
     </table>
     {% endif %}
