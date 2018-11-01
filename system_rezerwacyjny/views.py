@@ -68,8 +68,9 @@ def reservation(request, id):
         day = str(d).split("-")[2]
         n = request.POST.get(f"notes_{day}")
         Reservation.objects.create(date=d, note=n, id_sali=room)
-        return HttpResponseRedirect(reverse('all_rooms'))
+        return render(request, 'system_rezerwacyjny/reservation.html',
+                      {'form':False, 'room': room})
     else:
         return render(request, 'system_rezerwacyjny/reservation.html',
-                      {'room': room, "cal": mark_safe(cal)})
+                      {'room': room, "cal": mark_safe(cal), 'form':True})
 

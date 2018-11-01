@@ -1,14 +1,15 @@
 {% extends 'system_rezerwacyjny/base.html' %}
 {% block content %}
-    <h1>Zarezerwuj Salę {{ room.name }}</h1>
+    {%  if form %}
+    <h1>Rezerwacja sali {{ room.name }}</h1>
 
     {{cal}}
-    <div id="overlay">
-     <div>
-  <p>rezerwacja dodana</p>
-         <p>Kliknij tu aby <a href='' onclick='overlay()'>zamknąć okno</a> bez rezerwacji</p>
 
-     </div>
-</div>
+
+    {%  endif %}
+    {%  if not form %}
+        <p>rezerwacja do sali "{{ room.name }}" została pomyślnie dodana</p>
+        <p><a href="{% url 'reservation' id=room.pk %}">Zarezerwuj kolejne terminy dla tej sali</a></p>
+    {%  endif %}
 
 {% endblock %}
