@@ -1,0 +1,47 @@
+{% extends 'system_rezerwacyjny/base.html' %}
+{% block content %}
+    <h1>Szczegóły sali "{{ rooms.name }}"</h1><br><br>
+
+
+    <table border="3" cellspacing="5" cellpadding="8" style="border-collapse: collapse">
+        <thead>
+            <th>Nr Sali</th>
+            <th>Nazwa</th>
+            <th>Ilość osób</th>
+            <th>Czy jest projektor?</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{rooms.pk}}</td>
+                <td>{{rooms.name}}</td>
+                <td>{{rooms.capacity}}</td>
+                <td>{{ rooms.is_projector|yesno:"Tak,Nie" }}</td>
+            </tr>
+        </tbody>
+    </table><br>
+
+    <br> <p><a href="{% url 'reservation' id=rooms.pk %}">Zarezerwuj tę salę</a></p>
+
+
+    {% if date %}
+        <h3>Rezerwacje dla sali "{{ rooms.name }}"</h3><br>
+    <table border="3" cellspacing="5" cellpadding="8" style="border-collapse: collapse">
+        <thead>
+            <th>Data</th>
+            <th>Komentarz</th>
+        </thead>
+        <tbody>
+            {% for dat in date %}
+            <tr>
+                <td>{{dat.date}}</td>
+                <td>{{dat.note}}</td>
+            </tr>
+            {% endfor %}
+                </tbody>
+    </table><br>
+        {% else %}
+        <p>Brak rezerwacji dla tej sali</p>
+        {% endif %}
+
+
+{% endblock %}
