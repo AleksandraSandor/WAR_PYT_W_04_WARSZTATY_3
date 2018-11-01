@@ -10,6 +10,7 @@
     </form><br>
 
     <table border="3" cellspacing="5" cellpadding="8" style="border-collapse: collapse">
+         <p>{{ month }}</p>
         <thead>
             <th>Nr Sali</th>
             <th>Nazwa</th>
@@ -35,7 +36,10 @@
                 <td><a href="{% url 'modify_room' id=room.pk %}">Edytuj</a></td>
                 <td><a href="{% url 'delete_room' id=room.pk %}">Usuń</a></td>
                 {% if not form %}
-                <td><a href="{% url 'reservation' id=room.pk %}">Zarezerwuj</a></td>
+                    {% now "n" as current_month %}
+                     {% now "Y" as current_year %}
+                    {% now "j" as current_day %}
+                    <td><a href="{% url 'reservation' id=room.pk day=current_day month=current_month year=current_year   %}">Zarezerwuj</a></td>
                 {% endif %}
                     {% if form %}
                         {% load poll_extras %}

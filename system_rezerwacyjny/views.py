@@ -59,10 +59,17 @@ def all_rooms(request):
         return render(request, 'system_rezerwacyjny/sale.html', {'rooms':rooms, 'form':False})
 
 @csrf_exempt
-def reservation(request, id):
+def reservation(request, id, month=datetime.now().month, day=datetime.now().day, year=datetime.now().year):
     room = Sala.objects.get(pk=id)
-    hc = MyCalendar(room.id)
-    cal = hc.formatmonth(datetime.now().year, datetime.now().month)
+    if month == 0:
+        month = 12
+        year -= 1
+    if month == 13:
+        month = 1
+        year += 1
+
+    cal = MyCalendar(year, month, room.id)
+    html_cal = cal.formatmonth(year, month)
     if request.method == "POST":
         d = request.POST.get("date")
         day = str(d).split("-")[2]
@@ -71,5 +78,4 @@ def reservation(request, id):
         return HttpResponseRedirect(reverse('all_rooms'))
     else:
         return render(request, 'system_rezerwacyjny/reservation.html',
-                      {'room': room, "cal": mark_safe(cal)})
-
+                      {'room': room, "cal": mark_safe(html_cal), "month": month, "year": year, "day": day})

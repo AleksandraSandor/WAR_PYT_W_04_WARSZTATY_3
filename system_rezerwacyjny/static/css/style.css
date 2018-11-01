@@ -1,6 +1,16 @@
-
 table.month tr {
     text-align: center;
+}
+
+td {
+    text-align: center;
+}
+
+th.month {
+    height: 20px;
+    font-size: 20px;
+    padding-bottom: 20px;
+    color: darkblue;
 }
 
 table.month td {
@@ -8,6 +18,8 @@ table.month td {
     height: 120px;
     font-size: 16px;
     cursor: pointer;
+    padding: 5px;
+    border: 1px solid saddlebrown;
 }
 
 table.month td:hover {
@@ -43,4 +55,37 @@ table.month td:hover {
 }
 .tech {
     display: none;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.btn {
+  outline: none;
+  color: black;
+  background-color: transparent;
+  box-shadow: 0 0 0 0;
+}
+
+.clearfix {
+  margin: 15px;
+}
+
+.left, .right{
+    background-color: darkblue;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
 }

@@ -1,14 +1,10 @@
 {% extends 'system_rezerwacyjny/base.html' %}
 {% block content %}
     <h1>Zarezerwuj Salę {{ room.name }}</h1>
+<div class="clearfix">
 
-    {{cal}}
-    <div id="overlay">
-     <div>
-  <p>rezerwacja dodana</p>
-         <p>Kliknij tu aby <a href='' onclick='overlay()'>zamknąć okno</a> bez rezerwacji</p>
-
-     </div>
+	<a class="left btn" href="{% url 'reservation' id=room.pk day=day month=month|add:-1 year=year  %}"> Previous Month </a>
+	<a class="right btn" href="{% url 'reservation' id=room.pk day=day month=month|add:1 year=year  %}"> Next Month </a>
 </div>
-
+    {{cal}}
 {% endblock %}
