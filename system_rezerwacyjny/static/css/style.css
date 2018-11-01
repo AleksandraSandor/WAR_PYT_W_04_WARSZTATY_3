@@ -5,7 +5,10 @@ table.month tr {
 td {
     text-align: center;
 }
-
+table.month {
+    margin-top: 30px;
+    align-self: center;
+}
 th.month {
     height: 20px;
     font-size: 20px;
@@ -14,8 +17,8 @@ th.month {
 }
 
 table.month td {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     font-size: 16px;
     cursor: pointer;
     padding: 5px;
@@ -45,14 +48,6 @@ table.month td:hover {
     z-index: 1000;
 }
 
-#overlay div {
-    width: 300px;
-    margin: 100px auto;
-    background-color: #fff;
-    border: 1px solid #000;
-    padding: 15px;
-    text-align: center;
-}
 .tech {
     display: none;
 }
@@ -88,4 +83,15 @@ ul {
     text-align: center;
     text-decoration: none;
     display: inline-block;
+}
+
+.calendar {
+    clear: left;
+    display: flex;
+    align-items: center;
+}
+
+.old {
+    width: 240px !important;
+    height: 100px !important;
 }

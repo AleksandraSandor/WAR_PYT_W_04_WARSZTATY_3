@@ -28,7 +28,10 @@
                 <td>{{room.name}}</td>
                 <td>{{room.capacity}}</td>
                 <td>{{ room.is_projector|yesno:"Tak,Nie" }}</td>
-                <td><a href="{% url 'reservation' id=room.pk %}">Zarezerwuj</a></td>
+                {% now "n" as current_month %}
+                {% now "Y" as current_year %}
+                {% now "j" as current_day %}
+                <td><a href="{% url 'reservation' id=room.pk day=current_day month=current_month year=current_year  %}">Zarezerwuj</a></td>
             </tr>
             {% endfor %}
         {% else %}

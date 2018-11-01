@@ -1,17 +1,27 @@
 {% extends 'system_rezerwacyjny/base.html' %}
 {% block content %}
     {%  if form %}
-    <h1>Rezerwacja sali {{ room.name }}</h1>
+        <div>
+            <h1>Rezerwacja sali {{ room.name }}</h1>
+        </div>
+
     <div class="clearfix">
 	<a class="left btn" href="{% url 'reservation' id=room.pk day=day month=month|add:-1 year=year  %}"> Previous Month </a>
 	<a class="right btn" href="{% url 'reservation' id=room.pk day=day month=month|add:1 year=year  %}"> Next Month </a>
 </div>
-    {{cal}}
+        <div class="calendar">
+            {{ cal }}
+        </div>
+
 
     {%  endif %}
     {%  if not form %}
         <p>rezerwacja do sali "{{ room.name }}" została pomyślnie dodana</p>
-        <p><a href="{% url 'reservation' id=room.pk %}">Zarezerwuj kolejne terminy dla tej sali</a></p>
+        {% now "n" as current_month %}
+        {% now "Y" as current_year %}
+        {% now "j" as current_day %}
+        <p><a href="{% url 'reservation' id=room.pk day=current_day month=current_month year=current_year %}">Zarezerwuj
+            kolejne terminy dla tej sali</a></p>
     {%  endif %}
 
 {% endblock %}
