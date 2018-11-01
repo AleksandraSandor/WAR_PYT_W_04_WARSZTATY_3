@@ -3,7 +3,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.shortcuts import render, get_object_or_404,redirect
-from system_rezerwacyjny.forms import PostForm, ReservationForm
+from system_rezerwacyjny.forms import PostForm, SearchForm
 from system_rezerwacyjny.models import Sala, Reservation
 from system_rezerwacyjny.utils import MyCalendar
 from datetime import datetime
@@ -45,7 +45,9 @@ def delete_room(request, id):
 
 
 def single_room(request,id):
-    pass
+    rooms = get_object_or_404(Sala, pk=id)
+    date = Reservation.objects.filter(id_sali_id=id).order_by('date').filter(date__gte=datetime.today())
+    return render(request, 'system_rezerwacyjny/single_room.html', {'rooms': rooms, 'date': date })
 
 def all_rooms(request):
     if request.method == "POST":
@@ -75,7 +77,46 @@ def reservation(request, id, month=datetime.now().month, day=datetime.now().day,
         day = str(d).split("-")[2]
         n = request.POST.get(f"notes_{day}")
         Reservation.objects.create(date=d, note=n, id_sali=room)
-        return HttpResponseRedirect(reverse('all_rooms'))
+        return render(request, 'system_rezerwacyjny/reservation.html',
+                      {'form':False, 'room': room})
     else:
         return render(request, 'system_rezerwacyjny/reservation.html',
-                      {'room': room, "cal": mark_safe(html_cal), "month": month, "year": year, "day": day})
+                      {'room': room, "cal": mark_safe(html_cal), "month": month, "year": year, "day": day, 'form':True})
+
+
+def search(request):
+    if request.method == "POST":
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            capacity = form.cleaned_data['capacity']
+            is_projector = form.cleaned_data['is_projector']
+            date = form.cleaned_data['date']
+            if name:
+                room_name = Sala.objects.filter(name__icontains=name)
+            else:
+                room_name = Sala.objects.all()
+
+            if capacity:
+                room_capacity = Sala.objects.filter(capacity__gte=capacity)
+            else:
+                room_capacity = Sala.objects.all()
+
+            if is_projector:
+                room_projector = Sala.objects.filter(is_projector=is_projector)
+            else:
+                room_projector = Sala.objects.all()
+            rooms = room_name & room_capacity & room_projector
+
+            if date:
+                temp = []
+                for room in rooms:
+                    free_room = Reservation.objects.filter(date=date, id_sali_id=room)
+                    if len(free_room) == 0:
+                        temp.append(room)
+            else:
+                temp = rooms
+            return render(request, 'system_rezerwacyjny/search.html', {'rooms': temp, 'get': True})
+    else:
+        form = SearchForm()
+        return render(request, 'system_rezerwacyjny/search.html', {'get': False, 'form':form})

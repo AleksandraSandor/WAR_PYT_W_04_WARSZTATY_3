@@ -16,3 +16,9 @@ class ReservationForm(ModelForm):
         widgets = {
             'id_sali': HiddenInput()
         }
+
+class SearchForm(forms.Form):
+    name = forms.CharField(max_length=64, required=False)
+    capacity = forms.IntegerField(required=False, label='Minimalna pojemność sali')
+    date = forms.DateField(required=False)
+    is_projector = forms.BooleanField(required=False)

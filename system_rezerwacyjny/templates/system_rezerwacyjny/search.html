@@ -1,0 +1,40 @@
+{% extends 'system_rezerwacyjny/base.html' %}
+{% block content %}
+    {% if not get %}
+    <h1>Wyszukiwarka sal</h1><br>
+
+        <form method="POST" class="post-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Wyszukaj</button>
+        </form>
+
+    {%  endif %}
+
+    {% if get %}
+        {% if rooms %}
+    <h1>Wyniki wyszukiwania</h1><br><br>
+    <table border="3" cellspacing="5" cellpadding="8" style="border-collapse: collapse">
+        <thead>
+            <th>Nr Sali</th>
+            <th>Nazwa</th>
+            <th>Ilość osób</th>
+            <th>Czy jest projektor?</th>
+            <th>Rezerwacja</th>
+        </thead>
+        <tbody>
+            {% for room in rooms %}
+            <tr>
+                <td>{{room.pk}}</td>
+                <td>{{room.name}}</td>
+                <td>{{room.capacity}}</td>
+                <td>{{ room.is_projector|yesno:"Tak,Nie" }}</td>
+                <td><a href="{% url 'reservation' id=room.pk %}">Zarezerwuj</a></td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            <p>Brak wolnych sal dla podanych kryteriów wyszukiwania</p>
+        {% endif %}
+        </tbody>
+    </table>
+    {% endif %}
+{% endblock %}
