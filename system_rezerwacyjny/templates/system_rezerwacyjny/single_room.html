@@ -20,8 +20,10 @@
         </tbody>
     </table><br>
 
-    <br> <p><a href="{% url 'reservation' id=rooms.pk %}">Zarezerwuj tę salę</a></p>
-
+    {% now "n" as current_month %}
+    {% now "Y" as current_year %}
+    {% now "j" as current_day %}
+   <br> <p><a href="{% url 'reservation' id=rooms.pk day=current_day month=current_month year=current_year%}">Zarezerwuj tę salę</a></p>
 
     {% if date %}
         <h3>Rezerwacje dla sali "{{ rooms.name }}"</h3><br>

@@ -47,7 +47,7 @@ def delete_room(request, id):
 def single_room(request,id):
     rooms = get_object_or_404(Sala, pk=id)
     date = Reservation.objects.filter(id_sali_id=id).order_by('date').filter(date__gte=datetime.today())
-    return render(request, 'system_rezerwacyjny/single_room.html', {'rooms': rooms, 'date': date })
+    return render(request, 'system_rezerwacyjny/single_room.html', {'rooms': rooms, 'date': date, 'month':datetime.now().month, 'day':datetime.now().day, 'year':datetime.now().year })
 
 def all_rooms(request):
     if request.method == "POST":
